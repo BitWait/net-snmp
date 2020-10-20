@@ -111,6 +111,15 @@ _get(netsnmp_container *c, const void *key, int exact)
 static int
 _ssll_free(netsnmp_container *c)
 {
+   sl_container *sl = (sl_container*)c;
+	sl_node	*dummy = sl->head;
+	
+	while(dummy)
+	{
+		sl_node	*curr = dummy;
+		dummy = dummy->next;
+		free(curr);
+	}
     if(c) {
         free(c);
     }
